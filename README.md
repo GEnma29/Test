@@ -42,7 +42,7 @@ Ahora laravel nos da una guía donde definimos el tipo de motor con el cual trab
         DB_CONNECTION=mysql
         DB_HOST=127.0.0.1
         DB_PORT=3306
-        DB_DATABASE=j_livewire_8
+        DB_DATABASE=exampledb
         DB_USERNAME=root
         DB_PASSWORD=
 
@@ -54,7 +54,7 @@ Ahora vamos con cofigemail
 ![cofigmail](https://user-images.githubusercontent.com/53823068/110571152-83391600-812d-11eb-8eec-19693402051b.JPG)
 
 Cabe destacar que se tiene que configurar el correo de Gmail para usarse con aplicaciones menos “seguras” donde se nos proporciona una clave que necesitaremos luego 
-```
+```php
    'driver' => env('MAIL_DRIVER', 'smtp'),
    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
    'port' => env('MAIL_PORT', 587),
@@ -74,6 +74,47 @@ Cabe destacar que se tiene que configurar el correo de Gmail para usarse con apl
    MAIL_USERNAME=ejemplo@gmail.com
    MAIL_PASSWORD=claveindescifrable
    MAIL_ENCRYPTION=tls
+   /// Adicional a esto podemos agregar estos dos valores que no son obligatorios ///
+   MAIL_FROM_ADDRESS=ejemplo@gmail.com
+   MAIL_FROM_NAME=pepito
    
 ```
+Ahora vamos con Redis primero necesitamos utilizar el comando  `composer require predis/predis`
+
+Luego de esto tendremos lo siguiente en nuestro archivo database.php 
+
+```php
+      
+        'redis' => [
+
+        'client' => env(key:'REDIS_CLIENT',default: 'predis'),
+        'options'=>[
+            'cluster'=> env(key:'REDIS_CLUSTER', default:'redis'),
+            'prefix'=> env(key:'REDIS_PREFIX', default:''),
+        ]
+    
+        'default' => [
+            'host' => env('REDIS_HOST', 'localhost'),
+            'password' => env('REDIS_PASSWORD', null),
+            'port' => env('REDIS_PORT', 6379),
+            'database' => 0,
+            'read_timeout' => 60,
+            'context' => [
+                // 'auth' => ['username', 'secret'],
+                // 'stream' => ['verify_peer' => false],
+            ],
+    ],
+],
+    //////////////////// volvemos al archivo env////////////
+    BROADCAST_DRIVER=redis
+    QUEUE_CONNECTION=redis
+    
+    REDIS_HOST=127.0.0.1
+    REDIS_PASSWORD=null
+    REDIS_PORT=6379
+    
+```
+
+ Con esto ya estamos listo para trabajar
+
 
