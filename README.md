@@ -46,39 +46,34 @@ Ahora laravel nos da una guía donde definimos el tipo de motor con el cual trab
         DB_USERNAME=root
         DB_PASSWORD=
 
-       BROADCAST_DRIVER=log
-       CACHE_DRIVER=file
-       QUEUE_CONNECTION=sync
-       SESSION_DRIVER=database
-       SESSION_LIFETIME=120
+	
+```
+Ahora vamos con cofigemail 
 
-       MEMCACHED_HOST=127.0.0.1
 
-       REDIS_HOST=127.0.0.1
-       REDIS_PASSWORD=null
-       REDIS_PORT=6379
+![cofigmail](https://user-images.githubusercontent.com/53823068/110571152-83391600-812d-11eb-8eec-19693402051b.JPG)
 
-       MAIL_MAILER=smtp
-       MAIL_HOST=mailhog
-       MAIL_PORT=1025
-       MAIL_USERNAME=null
-       MAIL_PASSWORD=null
-       MAIL_ENCRYPTION=null
-       MAIL_FROM_ADDRESS=null
-       MAIL_FROM_NAME="${APP_NAME}"
+Cabe destacar que se tiene que configurar el correo de Gmail para usarse con aplicaciones menos “seguras” donde se nos proporciona una clave que necesitaremos luego 
+```
+   'driver' => env('MAIL_DRIVER', 'smtp'),
+   'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+   'port' => env('MAIL_PORT', 587),
 
-       AWS_ACCESS_KEY_ID=
-       AWS_SECRET_ACCESS_KEY=
-       AWS_DEFAULT_REGION=us-east-1
-       AWS_BUCKET=
+   'from' => [
+      'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
+      'name' => env('MAIL_FROM_NAME', 'Example'),
+      ],
+   'encryption' => env('MAIL_ENCRYPTION', 'tls'),
 
-       PUSHER_APP_ID=
-       PUSHER_APP_KEY=
-       PUSHER_APP_SECRET=
-       PUSHER_APP_CLUSTER=mt1
+   'username' => env('MAIL_USERNAME'),
+   'password' => env('MAIL_PASSWORD'),
+   //// modificaremos estos valores de nuenvo en el archivo env/// 
+   MAIL_DRIVER=smtp
+   MAIL_HOST=smtp.gmail.com
+   MAIL_PORT=587
+   MAIL_USERNAME=ejemplo@gmail.com
+   MAIL_PASSWORD=claveindescifrable
+   MAIL_ENCRYPTION=tls
+   
+```
 
-       MIX_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
-       MIX_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
-
-		
-		```
